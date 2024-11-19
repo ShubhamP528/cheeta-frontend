@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Outlet, useLocation } from "react-router-dom"; // useLocation to get the current route
+import "./App.css";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+
+import { useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { retrieveAuth } from "./features/auth";
 
 function App() {
+  const dispatch = useDispatch();
+  const location = useLocation(); // Get current location
+
+  useEffect(() => {
+    dispatch(retrieveAuth());
+  }, [dispatch]);
+
+  // Don't render Footer on the chat page
+  const shouldShowFooter = !location.pathname.startsWith("/chat");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <ToastContainer />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      {shouldShowFooter && <Footer />}
     </div>
   );
 }
