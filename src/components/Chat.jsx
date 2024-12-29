@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { IoIosCall, IoIosVideocam } from "react-icons/io";
 import { NODE_API_ENDPOINT } from "../utils/utils";
@@ -8,6 +8,17 @@ import { useSocket } from "../context/SocketProvider";
 import { FaArrowLeft } from "react-icons/fa";
 import Picker from "emoji-picker-react"; // Import the emoji picker
 import { SiIconify } from "react-icons/si";
+import peer from "../service/peer";
+import {
+  setChatUserRe,
+  setContactId,
+  setMyStream,
+  setOffer,
+  setPeer,
+  setSocket,
+} from "../features/chat";
+import CallingPage from "./CallingPage";
+
 // import "emoji-picker-react/dist/unicode.css"; // Import the CSS for the emoji picker
 
 // Utility function to parse the date from "DD/MM/YYYY" format to a valid Date object
@@ -63,6 +74,15 @@ const Chat = () => {
   const currentUser = useSelector((store) => store.user.user);
   const socket = useSocket();
   const messagesEndRef = useRef(null); // Reference for auto-scrolling
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isRinging, setIsRinging] = useState(false);
+
+  useEffect(() => {
+    dispatch(setPeer(peer)); // Set the peer in Redux store
+    dispatch(setContactId(contactId)); // Set the contactId in Redux store
+    dispatch(setSocket(socket)); // Set the socket in Redux store
+  }, [contactId, dispatch, socket]);
 
   // Function to scroll to the bottom of the message container
   const scrollToBottom = () => {
@@ -99,6 +119,8 @@ const Chat = () => {
 
         const data = await response.json();
         setChatUser(data.user || {});
+        console.log("User fetched:", data.user);
+        dispatch(setChatUserRe(data.user));
         setMessages(data.chats);
       } catch (error) {
         toast.error(error.message || "Error fetching messages");
@@ -199,6 +221,71 @@ const Chat = () => {
     setShowEmojiPicker(false); // Close the picker after selecting an emoji
   };
 
+  const handleVideoCall = async () => {
+    // Implement video call logic here
+
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true,
+    });
+    const offer = await peer.getOffer();
+    console.log({
+      to: contactId,
+      from: currentUser.username,
+      offer,
+    });
+    socket.emit("videoCalling", {
+      to: contactId,
+      from: currentUser.username,
+      offer,
+    });
+
+    console.log(stream);
+
+    dispatch(setMyStream(stream)); // Set the user's stream in Redux store
+    navigate("/videoCalling");
+  };
+
+  const handleIncomingVideoCall = useCallback(
+    async ({ from, offer }) => {
+      // setRemoteSocketId(from);
+      // const stream = await navigator.mediaDevices.getUserMedia({
+      //   audio: true,
+      //   video: true,
+      // });
+      // dispatch(setMyStream(stream));
+      console.log(`Incoming Video Call`, from, offer);
+      dispatch(setOffer(offer));
+      setIsRinging(true);
+
+      // console.log(`Incoming Call`, from, offer);
+      // const ans = await peer.getAnswer(offer);
+      // socket.emit("call:accepted", {
+      //   to: contactId,
+      //   from: currentUser.username,
+      //   ans,
+      // });
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    socket.on("incomming:videCall", handleIncomingVideoCall);
+    // socket.on("call:accepted", handleCallAccepted);
+    // socket.on("peer:nego:needed", handleNegoNeedIncomming);
+    // socket.on("peer:nego:final", handleNegoNeedFinal);
+    return () => {
+      socket.off("incomming:videCall", handleIncomingVideoCall);
+      // socket.off("call:accepted", handleCallAccepted);
+      // socket.off("peer:nego:needed", handleNegoNeedIncomming);
+      // socket.off("peer:nego:final", handleNegoNeedFinal);
+    };
+  }, [handleIncomingVideoCall, socket]);
+
+  if (isRinging) {
+    return <CallingPage callType={"Video Call"} />;
+  }
+
   return (
     <div className="flex flex-col h-screen">
       {/* Header with Contact Name and Call Options */}
@@ -211,15 +298,23 @@ const Chat = () => {
           <img
             src={chatUser.profilePicture} // Use default or fetched contact profile image
             alt="Contact"
-            className="w-10 h-10 rounded-full"
+            className="h-12 w-full rounded-full"
           />
           <span className="text-lg font-semibold">{contactId}</span>
         </div>
         <div className="flex items-center space-x-4">
-          <button className="hover:text-gray-200" title="Video Call">
+          <button
+            className="hover:text-gray-200"
+            title="Video Call"
+            onClick={() => handleVideoCall()}
+          >
             <IoIosVideocam className="text-2xl" />
           </button>
-          <button className="hover:text-gray-200" title="Audio Call">
+          <button
+            className="hover:text-gray-200"
+            title="Audio Call"
+            onClick={() => toast.warning("Feature in progress")}
+          >
             <IoIosCall className="text-2xl" />
           </button>
         </div>

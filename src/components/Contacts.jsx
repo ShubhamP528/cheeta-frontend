@@ -2,14 +2,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Use useNavigate from react-router-dom v6
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import img from "./profile.jpg"; // Profile image for contacts
 import { NODE_API_ENDPOINT } from "../utils/utils";
+import { setChatUserRe } from "../features/chat";
 
 const ContactList = () => {
   const [allContact, setAllContact] = useState([]);
   const currentUser = useSelector((store) => store.user.user);
   const navigate = useNavigate(); // Access the navigate function for navigation
+  const dispatch = useDispatch();
+
+  // console.log(allContact);
+  console.log(currentUser);
 
   // Fetch the contacts when the component mounts
   useEffect(() => {
@@ -29,7 +34,6 @@ const ContactList = () => {
         const filteredContact = parsedData.filter((contact) => {
           return contact.userId !== currentUser.username; // Exclude current user from contact list
         });
-
         setAllContact(filteredContact);
       } catch (error) {
         toast.error(error.message || "Error getting the contact");
@@ -39,10 +43,14 @@ const ContactList = () => {
     if (currentUser.username) {
       getAllUser();
     }
+    console.log("API call");
+    console.log(currentUser.username);
+    console.log(currentUser.username);
   }, [currentUser.username]);
 
   const handleContactClick = (contact) => {
     // Use navigate function to navigate to the chat page with the selected contact's userId
+    dispatch(setChatUserRe(contact));
     navigate(`/chat/${contact.userId}`);
   };
 
