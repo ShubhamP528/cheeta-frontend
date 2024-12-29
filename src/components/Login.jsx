@@ -10,6 +10,7 @@ import { GoogleLogin } from "@react-oauth/google"; // Import from react-oauth/go
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  const [gLoading, setgLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const Login = () => {
 
     if (response.credential) {
       const token = response.credential;
-      setLoading(true);
+      setgLoading(true);
 
       // Send the token to the backend for validation
       const resp = await fetch(`${NODE_API_ENDPOINT}/auth/google/callback`, {
@@ -63,11 +64,11 @@ const Login = () => {
       });
 
       if (!resp.ok) {
-        setLoading(false);
+        setgLoading(false);
 
         throw new Error("Invalid credentials");
       }
-      setLoading(false);
+      setgLoading(false);
       const data = await resp.json();
       dispatch(login(data));
       toast.success("Logged in successfully!");
@@ -142,7 +143,7 @@ const Login = () => {
             <span>Log in with Google</span>
           </button> */}
 
-          {loading ? (
+          {gLoading ? (
             <ColorRing
               visible={true}
               height="30"
