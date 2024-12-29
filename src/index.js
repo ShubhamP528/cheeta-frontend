@@ -17,6 +17,10 @@ import AboutUs from "./components/Aboutus";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsAndConditions from "./components/TermAndCondition";
 import ContactUs from "./components/ContactUs";
+import CallingPage from "./components/CallingPage";
+import VideoCallPage from "./components/VideoCalling";
+import AudioCalling from "./components/AudioCalling";
+import ProfilePage from "./components/ProfilePage";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +43,22 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact-list",
         element: <Contacts />,
+      },
+      {
+        path: "/calling",
+        element: <CallingPage />,
+      },
+      {
+        path: "/videoCalling",
+        element: <VideoCallPage />,
+      },
+      {
+        path: "/audioCalling",
+        element: <AudioCalling />,
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
       },
       {
         path: "/chat/:contactId",

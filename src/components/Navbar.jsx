@@ -70,7 +70,7 @@ const Navbar = () => {
                 <span className="mr-2">{currentUser.name}</span>
                 <button className="focus:outline-none">
                   <img
-                    className="h-8 w-8 rounded-full"
+                    className="h-10 w-full rounded-full"
                     src={currentUser.profilePicture} // Replace with actual profile image
                     alt="User profile"
                     loading="lazy"
