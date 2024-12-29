@@ -5,42 +5,42 @@ import { Link } from "react-router-dom";
 import { login } from "../features/auth";
 
 const Home = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const currentUser = useSelector((store) => store.user.user);
 
   // Handle the redirect from Google OAuth
-  useEffect(() => {
-    const getUserDataFromBackend = async () => {
-      try {
-        const queryParams = new URLSearchParams(window.location.search);
-        const token = queryParams.get("token");
-        const email = queryParams.get("email");
-        const name = queryParams.get("name");
-        const userId = queryParams.get("userId");
-        const profilePicture = queryParams.get("profilePicture");
-        const username = queryParams.get("username");
-        console.log(username);
+  // useEffect(() => {
+  //   const getUserDataFromBackend = async () => {
+  //     try {
+  //       const queryParams = new URLSearchParams(window.location.search);
+  //       const token = queryParams.get("token");
+  //       const email = queryParams.get("email");
+  //       const name = queryParams.get("name");
+  //       const userId = queryParams.get("userId");
+  //       const profilePicture = queryParams.get("profilePicture");
+  //       const username = queryParams.get("username");
+  //       console.log(username);
 
-        if (token && email && name && userId && profilePicture) {
-          dispatch(
-            login({
-              email,
-              name,
-              userId,
-              token,
-              username,
-              profilePicture,
-            })
-          );
-          window.history.replaceState(null, "", window.location.pathname);
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
+  //       if (token && email && name && userId && profilePicture) {
+  //         dispatch(
+  //           login({
+  //             email,
+  //             name,
+  //             userId,
+  //             token,
+  //             username,
+  //             profilePicture,
+  //           })
+  //         );
+  //         window.history.replaceState(null, "", window.location.pathname);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error);
+  //     }
+  //   };
 
-    getUserDataFromBackend();
-  }, [dispatch]);
+  //   getUserDataFromBackend();
+  // }, [dispatch]);
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center px-4">

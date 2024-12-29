@@ -17,6 +17,8 @@ import AboutUs from "./components/Aboutus";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsAndConditions from "./components/TermAndCondition";
 import ContactUs from "./components/ContactUs";
+import { GoogleOAuthProvider } from "@react-oauth/google"; // Import the provider
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -71,9 +73,11 @@ const appRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <Provider store={store}>
-      <RouterProvider router={appRouter} />
-    </Provider>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+      <Provider store={store}>
+        <RouterProvider router={appRouter} />
+      </Provider>
+    </GoogleOAuthProvider>
   </>
 );
 
