@@ -1,49 +1,49 @@
-// src/components/Footer.js
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-teal-700 to-cyan-800 dark:from-gray-800 dark:to-gray-900 drop-shadow-lg py-8">
+    <footer className="bg-gradient-to-r from-teal-700 to-cyan-800 dark:from-gray-800 dark:to-gray-900 py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          {/* Logo and App Name */}
-          <div className="flex items-center space-x-2 mb-4 md:mb-0">
-            <span className="text-2xl font-bold text-gray-200 dark:text-gray-400">
+        {/* Footer Content */}
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
+          {/* Logo Section */}
+          <div className="text-center md:text-left">
+            <span className="text-lg font-bold text-gray-200 dark:text-gray-400">
               Cheeta
             </span>
           </div>
 
           {/* Footer Links */}
-          <div className="flex space-x-4 text-sm mb-4 md:mb-0 text-gray-200 dark:text-gray-400">
+          <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm text-gray-200 dark:text-gray-400">
             <Link
               to="/about"
-              className="hover:text-gray-200 dark:hover:text-gray-400"
+              className="hover:text-white dark:hover:text-gray-300"
             >
               About Us
             </Link>
             <Link
               to="/privacy-policy"
-              className="hover:text-gray-200 dark:hover:text-gray-400"
+              className="hover:text-white dark:hover:text-gray-300"
             >
               Privacy Policy
             </Link>
             <Link
               to="/term-and-conditions"
-              className="hover:text-gray-200 dark:hover:text-gray-400"
+              className="hover:text-white dark:hover:text-gray-300"
             >
               Terms of Service
             </Link>
             <Link
               to="/contact"
-              className="hover:text-gray-200 dark:hover:text-gray-400"
+              className="hover:text-white dark:hover:text-gray-300"
             >
               Contact
             </Link>
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex space-x-4 text-gray-200 dark:text-gray-400">
+          <div className="flex justify-center md:justify-end space-x-6 text-gray-200 dark:text-gray-400">
             <a
               href="https://facebook.com"
               target="_blank"
@@ -51,7 +51,7 @@ const Footer = () => {
               className="hover:text-gray-200 dark:hover:text-gray-400"
             >
               <svg
-                className="h-6 w-6 fill-current"
+                className="h-5 w-5 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
@@ -65,7 +65,7 @@ const Footer = () => {
               className="hover:text-gray-200 dark:hover:text-gray-400"
             >
               <svg
-                className="h-6 w-6 fill-current"
+                className="h-5 w-5 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
@@ -79,7 +79,7 @@ const Footer = () => {
               className="hover:text-gray-200 dark:hover:text-gray-400"
             >
               <svg
-                className="h-6 w-6 fill-current"
+                className="h-5 w-5 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
@@ -91,8 +91,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-6 text-center text-sm text-gray-200 dark:text-gray-400">
-          © {new Date().getFullYear()} ChatApp. All rights reserved.
+        <div className="mt-4 text-center text-xs text-gray-200 dark:text-gray-400">
+          © {new Date().getFullYear()} Cheeta. All rights reserved.
         </div>
       </div>
     </footer>
