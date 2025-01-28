@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-teal-600 to-cyan-800 dark:from-gray-800 dark:to-gray-900  shadow-lg py-8">
+    <footer className="bg-gradient-to-r from-teal-700 to-cyan-800 dark:from-gray-800 dark:to-gray-900 drop-shadow-lg py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo and App Name */}
