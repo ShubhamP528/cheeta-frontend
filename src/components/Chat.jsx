@@ -289,7 +289,7 @@ const Chat = () => {
   return (
     <div className="flex flex-col h-screen">
       {/* Header with Contact Name and Call Options */}
-      <div className="flex items-center justify-between bg-gradient-to-br from-blue-200 to-blue-800 text-white p-4 shadow-lg">
+      <div className="flex items-center justify-between bg-gradient-to-br from-teal-500 to-teal-800 text-white p-4 shadow-lg">
         <div className="flex items-center gap-3">
           {/* Back button */}
           <Link to="/contact-list" className="text-white text-xl font-bold">
@@ -321,11 +321,11 @@ const Chat = () => {
       </div>
 
       {/* Chat Window */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col ">
         {/* Messages Container with Scroll */}
         <div
           className="flex-1 p-4 bg-white rounded-lg shadow-lg overflow-y-auto"
-          style={{ maxHeight: "calc(100vh - 180px)" }}
+          style={{ maxHeight: "calc(100vh - 20vh)" }}
         >
           <div className="space-y-4">
             {groupedMsg.map((group, index) => (

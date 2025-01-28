@@ -15,3 +15,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Default light mode styles are already provided by Tailwind */
+.bg-light {
+  @apply bg-white text-gray-800;
+}
+
+.bg-dark {
+  @apply bg-gray-900 text-gray-200;
+}

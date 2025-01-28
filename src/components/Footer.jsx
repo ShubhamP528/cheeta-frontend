@@ -4,37 +4,51 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-white py-8 mt-5">
+    <footer className="bg-gradient-to-r from-teal-600 to-cyan-800 dark:from-gray-800 dark:to-gray-900  shadow-lg py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo and App Name */}
           <div className="flex items-center space-x-2 mb-4 md:mb-0">
-            <span className="text-2xl font-bold">Cheeta</span>
+            <span className="text-2xl font-bold text-gray-200 dark:text-gray-400">
+              Cheeta
+            </span>
           </div>
 
           {/* Footer Links */}
-          <div className="flex space-x-4 text-sm mb-4 md:mb-0">
-            <Link to="/about" className="hover:text-gray-200">
+          <div className="flex space-x-4 text-sm mb-4 md:mb-0 text-gray-200 dark:text-gray-400">
+            <Link
+              to="/about"
+              className="hover:text-gray-200 dark:hover:text-gray-400"
+            >
               About Us
             </Link>
-            <Link to="/privacy-policy" className="hover:text-gray-200">
+            <Link
+              to="/privacy-policy"
+              className="hover:text-gray-200 dark:hover:text-gray-400"
+            >
               Privacy Policy
             </Link>
-            <Link to="/term-and-conditions" className="hover:text-gray-200">
+            <Link
+              to="/term-and-conditions"
+              className="hover:text-gray-200 dark:hover:text-gray-400"
+            >
               Terms of Service
             </Link>
-            <Link to="/contact" className="hover:text-gray-200">
+            <Link
+              to="/contact"
+              className="hover:text-gray-200 dark:hover:text-gray-400"
+            >
               Contact
             </Link>
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 text-gray-200 dark:text-gray-400">
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-200"
+              className="hover:text-gray-200 dark:hover:text-gray-400"
             >
               <svg
                 className="h-6 w-6 fill-current"
@@ -48,7 +62,7 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-200"
+              className="hover:text-gray-200 dark:hover:text-gray-400"
             >
               <svg
                 className="h-6 w-6 fill-current"
@@ -62,7 +76,7 @@ const Footer = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-200"
+              className="hover:text-gray-200 dark:hover:text-gray-400"
             >
               <svg
                 className="h-6 w-6 fill-current"
@@ -77,7 +91,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-6 text-center text-sm text-gray-200">
+        <div className="mt-6 text-center text-sm text-gray-200 dark:text-gray-400">
           © {new Date().getFullYear()} ChatApp. All rights reserved.
         </div>
       </div>
