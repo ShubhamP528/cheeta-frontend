@@ -292,7 +292,7 @@ const VideoCallPage = () => {
             className="bg-gray-800 hover:bg-gray-700 text-white p-4 rounded-full shadow-md flex items-center justify-center transition"
             onClick={handleMuteUnmute}
           >
-            {isMuted ? <IoMdMicOff /> : <IoMdMic />}
+            {isMuted ? <IoMdMic /> : <IoMdMicOff />}
           </button>
 
           <button
