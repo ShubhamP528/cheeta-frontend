@@ -75,16 +75,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-800">
-      <div className="w-full max-w-md bg-white dark:bg-gray-900 text-black dark:text-white p-8 shadow-md rounded-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-600 dark:text-blue-400">
+    <div className="flex items-center justify-center h-screen bg-teal-800 dark:bg-gray-800">
+      <div className="w-full max-w-md bg-teal-900 dark:bg-gray-900 text-black dark:text-white p-8 shadow-md rounded-md">
+        <h2 className="text-2xl font-bold text-center mb-6 text-white dark:text-blue-400">
           Login
         </h2>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">
-              Email
-            </label>
+            <label className="block text-white dark:text-gray-300">Email</label>
             <input
               type="email"
               value={email}
@@ -94,7 +92,7 @@ const Login = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">
+            <label className="block text-white dark:text-gray-300">
               Password
             </label>
             <input
@@ -124,11 +122,11 @@ const Login = () => {
               "Login"
             )}
           </button>
-          <p className="text-center text-gray-600 mt-4 dark:text-gray-300">
+          <p className="text-center text-white mt-4 dark:text-gray-300">
             Don't have an account?{" "}
             <Link
               to="/signup"
-              className="text-blue-600 hover:underline dark:text-blue-400"
+              className="text-gray-300 hover:underline dark:text-blue-400"
             >
               Sign up
             </Link>

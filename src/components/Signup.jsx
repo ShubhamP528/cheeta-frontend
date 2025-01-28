@@ -66,16 +66,14 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 p-8 shadow-md rounded-md">
-        <h2 className="text-2xl font-bold text-center mb-6 text-blue-600 dark:text-blue-400">
+    <div className="flex items-center justify-center h-screen bg-teal-900 dark:bg-gray-900">
+      <div className="w-full max-w-md bg-teal-800 dark:bg-gray-800 p-8 shadow-md rounded-md">
+        <h2 className="text-2xl font-bold text-center mb-6 text-white dark:text-blue-400">
           Sign Up
         </h2>
         <form onSubmit={handleSignup} className="space-y-4">
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">
-              Name
-            </label>
+            <label className="block text-white  dark:text-gray-300">Name</label>
             <input
               type="text"
               value={name}
@@ -85,9 +83,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">
-              Email
-            </label>
+            <label className="block text-white dark:text-gray-300">Email</label>
             <input
               type="email"
               value={email}
@@ -97,7 +93,7 @@ const Signup = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 dark:text-gray-300">
+            <label className="block text-white dark:text-gray-300">
               Password
             </label>
             <input
@@ -119,17 +115,17 @@ const Signup = () => {
                 width="30"
                 ariaLabel="color-ring-loading"
                 wrapperClass="flex justify-center"
-                colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+                colors={["#fffff", "#fffff", "#fffff", "#fffff", "#fffff"]}
               />
             ) : (
               "Sign Up"
             )}
           </button>
-          <p className="text-center text-gray-600 dark:text-gray-400 mt-4">
+          <p className="text-center text-white dark:text-gray-400 mt-4">
             Already have an account?{" "}
             <Link
               to="/login"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-gray-500 dark:text-blue-400 hover:underline"
             >
               Login
             </Link>
